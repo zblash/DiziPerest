@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="icerik" layout:fragment="content">
+    <form th:action="@{/diziler/ekle}" enctype="multipart/form-data" th:object="${serie}" method="post">
+        <div class="textbox">
+        <input type="text" id="categoryName" placeholder="Dizi Adi" th:field="*{Name}"/>
+        <span th:if="${#fields.hasErrors('Name')}" th:errors="*{Name}">Category Error</span>
+        </div>
+        <div class="textbox">
+        <input type="file" th:field="*{Photo}" id="customFile">
+        <label for="customFile">Dizi Afisi</label>
+        </div>
+        <button type="submit" class="btn">Kaydet</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/index.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="wrap">
+<div th:replace="fragments/header::header"></div>
+<div layout:fragment="content"></div>
+</div>
+</body>
+</html>

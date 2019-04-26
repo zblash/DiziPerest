@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="content" layout:fragment="content">
+    <div class="etiket">
+        <h3>Hashtagler</h3>
+        <hr>
+        <table border="1">
+            <tr th:each="hashtag : ${serie.hashtags}">
+                <td width="295" height="40">
+                    <span th:text="${hashtag.name}"></span>
+                </td>
+            </tr>
+        </table>
+
+    </div><!----etiket--->
+    <div class="yorum">
+
+        <div class="hashtag-kutu">
+
+
+            <form th:object="${comment}" th:action="@{/addcomment}" method="post">
+                <input type="hidden" id="SerieId" name="Serie" th:value="${serie.id}">
+                <textarea th:field="*{Comment}"></textarea>
+            <input type="submit" value="yorum yap" class="yorumbut">
+            </form>
+        </div><!--kutu--->
+
+
+
+
+
+
+
+
+
+
+    </div><!---yorum--->
+</div><!--content-->
+</body>
+</html>

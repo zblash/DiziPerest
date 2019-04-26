@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+    <div class="heading" th:fragment="header">
+        <a th:href="@{/}"><h1 class="logo"><b>D</b>izi<b>P</b>erest</h1></a>
+
+        <div class="menu">
+            <ul>
+                <li><a th:href="@{/}">Anasayfa</a></li>
+                <li><a th:href="@{/diziler}">Diziler</a></li>
+                <li><a th:href="@{/hashtagler}">#Hashtagler</a></li>
+            </ul>
+        </div>
+        <div class="oturum">
+            <a th:href="@{/login}">Giriş Yap</a><br>
+            <a th:href="@{/register}">Kayıt Ol</a>
+
+        </div>
+    </div>
+    <br>
+    <hr>
+</div>
+</body>
+</html>

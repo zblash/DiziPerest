@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="login-box">
+    <form th:action="@{/login}" method="post">
+    <h1>Giriş</h1>
+        <div class="alert alert-dismissible alert-danger" th:if="${param.error}">
+            Kullanıcı Adı veya Şifre yanlış.
+        </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <div class="textbox">
+        <i class="fas fa-user"></i>
+        <input type="text" name="username" placeholder="Email Adresiniz"/>
+    </div>
+
+    <div class="textbox">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Şifreniz"/>
+    </div>
+
+    <input type="submit" class="btn" value="Giriş Yap">
+    </form>
+</div>
+
+
+
+</body>
+</html>

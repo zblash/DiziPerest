@@ -1,0 +1,125 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
+a{ color:#fff;}
+a:hover{ color:#187904 ; font-size: 20px;}
+/*body{*/
+/*  background: url('../img/ark.jpg') no-repeat;*/
+/*  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+/*}*/
+
+.wrap {
+
+  width:1000px;
+  margin: auto;
+
+
+}
+.heading {padding-top: 20px;
+  height:80px;
+  display: block;
+  padding: 10px;
+
+}
+
+.logo{ margin-top: 20px;
+  border-top-right-radius: 10px;
+  padding: 2px;
+}
+
+.heading h1 {
+  font-size:55px;
+  float:left;
+  color:#fff;
+  line-height:60px;
+}
+
+.heading h1 b{
+  color:#187904;
+}
+.heading .menu
+{
+
+
+  float:right;
+  margin-top:30px;
+}
+
+.heading .menu ul {font-size:30px;
+  list-style-type: none;
+}
+
+.heading .menu ul li {
+  float:left;
+  font-size:30px;
+  margin-right:30px;
+}
+
+.heading .menu ul li a {
+  background-color: #f5f5f5;
+  padding:6px;
+  color:#187904;
+  border-radius:3px;
+  text-decoration: none;
+  line-height:60px;
+  font-size:15px;
+  font-weight: bold
+
+}
+.heading .menu ul li a:hover{
+  background-color: #187904;
+  color:#f5f5f5;
+}
+
+.oturum {
+  position:fixed;
+  width:80px;
+  height: 10px;
+  margin-left:1050px;
+  color:#fff;
+  margin-top:22px;
+  text-align: center;
+}
+
+.oturum  a{ color:#fff; text-decoration: none; }
+
+.oturum a:hover{ color:#fff;}
+.icerik{
+
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+    border-top-right-radius:10px;
+    width:1000px;
+    height:830px;
+    margin-left:20px;
+    margin-bottom:10px;
+    margin-top:40px;
+    padding:15px;
+
+    opacity:0.9;
+    }
+.kutu{
+   width:232px; height:260px;
+   border:#2f3640 1px solid;
+   float:left;
+   background:#cccccc;
+   padding:0px;
+   margin-left:8px;
+   margin-top:8px;
+
+}
+h3{ text-align:center; }
+.kutu img {
+    opacity: 5.0;
+    filter: alpha(opacity=50);
+}
+
+.kutu img:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=100);
+}
+.icerik a:hover{ color:#7f8c8d; overflow: hidden;}
+.icerik a{ text-decoration:none; color:#000; overflow: hidden;}
