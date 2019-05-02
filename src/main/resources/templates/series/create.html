@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="icerik" layout:fragment="content">
+    <div class="login-box">
     <form th:action="@{/diziler/ekle}" enctype="multipart/form-data" th:object="${serie}" method="post">
         <div class="textbox">
         <input type="text" id="categoryName" placeholder="Dizi Adi" th:field="*{Name}"/>
@@ -15,10 +16,10 @@
         </div>
         <div class="textbox">
         <input type="file" th:field="*{Photo}" id="customFile">
-        <label for="customFile">Dizi Afisi</label>
         </div>
         <button type="submit" class="btn">Kaydet</button>
     </form>
+    </div>
 </div>
 </body>
 </html>

@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{/css/index.css}" rel="stylesheet" media="screen"/>
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
 <div class="wrap">

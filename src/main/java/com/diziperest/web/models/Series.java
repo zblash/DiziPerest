@@ -1,5 +1,6 @@
 package com.diziperest.web.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,11 +24,14 @@ public class Series {
 
     private String name;
 
+    @JsonIgnore
     private String photoUrl;
 
+    @JsonIgnore
     @Transient
     private MultipartFile photo;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(

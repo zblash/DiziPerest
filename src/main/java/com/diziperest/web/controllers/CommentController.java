@@ -12,14 +12,19 @@ import com.diziperest.web.services.concretes.SeriesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,21 +50,41 @@ public class CommentController {
         Matcher m = tagMatcher.matcher(commentDto.getComment());
         if (m.find())
         {
-            Hashtag hashtag = hashtagRepository.findByName(m.group(1)).orElseGet(() -> {
+            Hashtag hashtag = hashtagRepository.findByName(m.group(1).substring(1)).orElseGet(() -> {
                 Hashtag newHashtag = new Hashtag();
                 newHashtag.setName(m.group(1).substring(1));
                 newHashtag.addUser(principal.getUser());
-                return hashtagRepository.save(newHashtag);
+                Hashtag saved = hashtagRepository.save(newHashtag);
+                serie.addHashtag(saved);
+                return saved;
             });
-            serie.addHashtag(hashtag);
+
             seriesRepository.save(serie);
             Comment comment = new Comment();
             comment.setComment(commentDto.getComment());
             comment.setSeries(serie);
             comment.setHashtag(hashtag);
             comment.setUser(principal.getUser());
+
+            SimpleDateFormat df = new SimpleDateFormat("dd-M-yyyy");
+            String formattedDate = df.format(new Date());
+            try {
+                comment.setCreatedAt(df.parse(formattedDate));
+            } catch (ParseException e) {
+                throw new RuntimeException();
+            }
+
             commentRepository.save(comment);
         }
         return "redirect:/diziler/"+serie.getId();
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/getcomments/{hashtagId}", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getComments(@PathVariable Long hashtagId, @RequestParam(value = "serieId", required=false) Long serieId){
+       if (Optional.ofNullable(serieId).isPresent()){
+           return ResponseEntity.ok(commentRepository.findByHashtag_IdAndSeries_Id(hashtagId,serieId));
+       }
+       return ResponseEntity.ok(commentRepository.findByHashtag_Id(hashtagId));
     }
 }

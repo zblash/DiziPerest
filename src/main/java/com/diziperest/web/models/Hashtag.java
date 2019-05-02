@@ -1,5 +1,6 @@
 package com.diziperest.web.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Hashtag {
 
     private String name;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_hashtag",
@@ -30,6 +32,7 @@ public class Hashtag {
             @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private List<User> users = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "hashtags",fetch = FetchType.LAZY)
     private List<Series> series;
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <head>
 </head>
 <body>
@@ -12,12 +13,22 @@
                 <li><a th:href="@{/}">Anasayfa</a></li>
                 <li><a th:href="@{/diziler}">Diziler</a></li>
                 <li><a th:href="@{/hashtagler}">#Hashtagler</a></li>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <li><a th:href="@{/diziler/ekle}">Dizi Ekle</a></li>
+                </th:block>
             </ul>
         </div>
+
         <div class="oturum">
+            <th:block sec:authorize="!isAuthenticated()">
             <a th:href="@{/login}">Giriş Yap</a><br>
             <a th:href="@{/register}">Kayıt Ol</a>
-
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="POST">
+                    <button type="submit">Çıkış Yap</button>
+                </form>
+            </th:block>
         </div>
     </div>
     <br>

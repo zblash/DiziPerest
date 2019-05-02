@@ -12,7 +12,7 @@
         <h3>Hashtagler</h3>
         <hr>
         <table border="1">
-            <tr th:each="hashtag : ${serie.hashtags}">
+            <tr th:each="hashtag : ${hashtags}">
                 <td width="295" height="40">
                     <span style="cursor: pointer;" onclick="fire_ajax_submit(this.id)" id="4" th:text="${hashtag.name}"></span>
                 </td>
@@ -23,13 +23,13 @@
     <div class="yorumlar">
         <div class="yorumdiv">
             <h3>Yorum Yap</h3>
-        <form th:object="${comment}" th:action="@{/addcomment}" method="post">
-            <input type="hidden" id="SerieId" name="Serie" th:value="${serie.id}">
-            <textarea rows="8" cols="82" th:field="*{Comment}"></textarea>
-            <input type="submit" value="Yorum Yap">
-        </form>
+            <form th:object="${comment}" th:action="@{/addcomment}" method="post">
+                <input type="hidden" id="SerieId" name="Serie" th:value="${serie.id}">
+                <textarea rows="8" cols="82" th:field="*{Comment}"></textarea>
+                <input type="submit" value="Yorum Yap">
+            </form>
         </div>
-    <div class="hashtag-kutu-main">
+        <div class="hashtag-kutu-main">
 
         </div>
     </div>
@@ -37,7 +37,7 @@
         function fire_ajax_submit(clicked_id) {
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
-            var uri = "/getcomments/"+clicked_id+"?seriesId=[[${serie.id}]]";
+            var uri = "/getcomments/"+clicked_id;
             $.ajax({
                 type: "GET",
                 beforeSend: function (request) {
